@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Blog Posts{% endblock %}
+
+{% block content %}
+
+<div class="top-bar">
+    <button><a class="btn" href="{% url 'new_post' %}">New Post</a></button>
+    <button><a class="btn" href="{% url 'profile' %}">Profile</a></button>
+    <button><a class="btn" href="{% url 'logout' %}">Logout</a></button>
+</div>
+
+<div class="header">
+    <h2>BlogBrew</h2>
+</div>
+
+<div class="row">
+    <div class="leftcolumn">
+        {% for post in posts reversed %}
+        <div class="card">
+            <div class="card-actions">
+                <button><a class="btn" href="{% url 'edit_post' post.id %}">Edit</a></button>
+                <button><a class="btn" href="{% url 'delete_post' post.id %}">Delete</a></button>
+            </div>
+            <a href="/post/{{post.id}}">
+                <h2>{{post.title}}</h2>
+            </a>
+            <h5>{{post.created_at|date:"M d, Y H:i"}}</h5>
+            <p>{{post.body|truncatewords:20}}</p>
+            <p>Author: {{post.author.username}}</p>
+        </div>
+        {% empty %}
+        <div class="card">
+            <h2>No posts yet!</h2>
+            <p>Start by creating your first post.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f4f4f4;
+    color: #222;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #181818;
+    color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    transition: background 0.3s;
+}
+
+body.dark-mode .container {
+    background: #232323;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+button,
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover,
+.btn:hover {
+    background: #444;
+}
+
+body.dark-mode button,
+body.dark-mode .btn {
+    background: #f4f4f4;
+    color: #181818;
+}
+
+body.dark-mode button:hover,
+body.dark-mode .btn:hover {
+    background: #ccc;
+}
+
+/* Toggle switch styles */
+.toggle-switch {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+}
+
+.toggle-switch input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-switch label {
+    cursor: pointer;
+    background: #222;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: background 0.3s, color 0.3s;
+    user-select: none;
+}
+
+body.dark-mode .toggle-switch label {
+    background: #f4f4f4;
+    color: #181818;
+}

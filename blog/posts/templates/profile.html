@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+{{ user.username }}
+{{ user.email }}
+{{ user.first_name }}
+{{ user.last_name }}
+{{ user.date_joined }}
+{{ user.last_login }}
+{% if user.profile %}
+    {{ user.profile.bio }}
+    {{ user.profile.location }}
+{% endif %}
+{% if user.is_authenticated %}
+    <p>Welcome back, {{ user.username }}!</p>
+{% else %}
+    <p>Please log in to access your profile.</p>
+{% endif %}
+<!-- </script> -->
+<div class="form-container">
+    <form method="post">
+        {% csrf_token %}
+        <div class="top-bar">
+            <h1>Profile</h1>
+        </div>
+        <div class="profile-info">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>First Name:</strong> {{ user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+            <p><strong>Date Joined:</strong> {{ user.date_joined|date:"M d, Y" }}</p>
+            <p><strong>Last Login:</strong> {{ user.last_login|date:"M d, Y H:i" }}</p>
+            {% if user.profile %}
+                <p><strong>Bio:</strong> {{ user.profile.bio }}</p>
+                <p><strong>Location:</strong> {{ user.profile.location }}</p>
+            {% else %}
+                <p>No profile information available.</p>
+            {% endif %}
+        </div>
+        <div class="form-actions">
+            <a class="btn" href="{% url 'edit_profile' %}">Edit Profile</a>
+            <a class="btn" href="{% url 'logout' %}">Logout</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
